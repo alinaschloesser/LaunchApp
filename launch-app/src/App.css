@@ -1,0 +1,40 @@
+.hero{
+  border-bottom: 1px #1975d2 solid;
+  text-align: center;
+  background-color: #fbfbfb;
+}
+
+
+
+.clearfix:after { 
+   content: "."; 
+   visibility: hidden; 
+   display: block; 
+   height: 0; 
+   clear: both;
+}
+
+.box{
+  margin: 3%;
+  box-shadow: 0 2px 3px rgba(7, 81, 173, 0.2), 0 0 0 1px rgba(114, 125, 134, 0.1);
+}
+
+.form{
+  margin: 25px auto;
+  display: inline-block;
+  background-color: #fbfbfb;
+  width: 55%;
+}
+
+.formContainer{
+  text-align: center;
+}
+
+.button{
+  float: right;
+}
+
+.newSearch{
+  float: none;
+  margin: 0 auto;
+}
