@@ -85,6 +85,8 @@ class Form extends Component {
             rocketName={launch.rocket.name}
             // {launch.rocket.agencies.map((agency)=>
             spaceAgencies= {launch.rocket.agencies[0].name}
+            locationName= {launch.location.name}
+            img={launch.rocket.imageURL}
           // )}
           />
         )}
@@ -113,8 +115,8 @@ class SearchResults extends Component {
           <li>Launch Window Start Time: {this.props.windowstart}</li>
           <li>Rocket Name: {this.props.rocketName}</li>
           <li>List of Space Agencies: {this.props.spaceAgencies}</li>
-          <li>Launch Location Name/Country: {this.props}</li>
-          <li>A Thumbnail Image of the Rocket: {this.props}</li>
+          <li>Launch Location Name/Country: {this.props.locationName}</li>
+          <li>A Thumbnail Image of the Rocket: {this.props.img}</li>
           <li className="button">Favorites Button</li>
         </ul>
       </div>
