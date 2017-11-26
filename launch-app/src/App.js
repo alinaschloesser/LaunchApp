@@ -37,13 +37,17 @@ class Form extends Component {
       startDate: form.startDate,
       endDate: form.endDate
     }
+    // let resultsData = [];  
+
     this.state.dates.push(newSearch);
-    fetch(`https://launchlibrary.net/1.2/launch/${this.state.form.startDate}/${this.state.form.endDate}`, {method: 'GET'})
-        .then(res => {return (res.json())})
-
-       .then(launches => { this.setState({ searchResults: launches}); console.log(this.state.SearchResults);})
-
-  }
+    fetch(`https://launchlibrary.net/1.2/launch/${this.state.form.startDate}/${this.state.form.endDate}`)
+      .then(res => res.json())
+      .then(data => {
+        console.log(data)
+        this.setState({ searchResults: data.launches}); 
+        console.log(this.state.searchResults)
+      })
+    }
 
   displayNewSearch = () => {
     this.setState({displayNewSearch: !this.state.displayNewSearch})
@@ -73,10 +77,15 @@ class Form extends Component {
         </div>
       </div>
       <div>
-     {this.state.searchResults && this.state.searchResults.length && this.state.searchResults.launches.map((launch)=>
+     {this.state.searchResults && this.state.searchResults.length && this.state.searchResults.map((launch)=>
           <SearchResults
             key={launch.id} 
             name={launch.name}
+            windowstart={launch.windowstart}
+            rocketName={launch.rocket.name}
+            // {launch.rocket.agencies.map((agency)=>
+            spaceAgencies= {launch.rocket.agencies[0].name}
+          // )}
           />
         )}
  
@@ -98,15 +107,15 @@ class SearchResults extends Component {
 
   render(){
     return(
-      <div>
+      <div className="box">
         <ul>
-          <li>Name:{this.props.name}</li>
-          <li>Launch Window Start Time</li>
-          <li>Rocket Name</li>
-          <li>List of Space agencies</li>
-          <li>Launch Location Name/Country</li>
-          <li>A Thumbnail Image of the Rocket</li>
-          <li>Favorites Button</li>
+          <li>Launch Name: {this.props.name}</li>
+          <li>Launch Window Start Time: {this.props.windowstart}</li>
+          <li>Rocket Name: {this.props.rocketName}</li>
+          <li>List of Space Agencies: {this.props.spaceAgencies}</li>
+          <li>Launch Location Name/Country: {this.props}</li>
+          <li>A Thumbnail Image of the Rocket: {this.props}</li>
+          <li className="button">Favorites Button</li>
         </ul>
       </div>
     )
