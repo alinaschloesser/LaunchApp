@@ -34,7 +34,18 @@
   float: right;
 }
 
-.newSearch{
+.newSearch, .favs{
   float: none;
   margin: 0 auto;
+}
+
+li:last-child{
+  margin-top: 10px; 
+}
+
+.name{
+  float:left;
+  color: #6F8099;
+  font-size: 1rem;
+  font-weight: bold;
 }

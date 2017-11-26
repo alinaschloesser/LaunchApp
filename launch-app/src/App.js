@@ -109,15 +109,15 @@ class SearchResults extends Component {
 
   render(){
     return(
-      <div className="box">
+      <div className="box clearfix">
         <ul>
-          <li>Launch Name: {this.props.name}</li>
-          <li>Launch Window Start Time: {this.props.windowstart}</li>
-          <li>Rocket Name: {this.props.rocketName}</li>
-          <li>List of Space Agencies: {this.props.spaceAgencies}</li>
-          <li>Launch Location Name/Country: {this.props.locationName}</li>
-          <li>A Thumbnail Image of the Rocket: {this.props.img}</li>
-          <li className="button">Favorites Button</li>
+          <li><p className="name">Launch Name:</p> {this.props.name}</li>
+          <li><p className="name">Launch Window Start Time:</p> {this.props.windowstart}</li>
+          <li><p className="name">Rocket Name:</p> {this.props.rocketName}</li>
+          <li><p className="name">List of Space Agencies:</p> {this.props.spaceAgencies}</li>
+          <li><p className="name">Launch Location Name/Country:</p> {this.props.locationName}</li>
+          <li><p className="name">A Thumbnail Image of the Rocket:</p> {this.props.img}</li>
+          <li className="button favs">Favorites Button</li>
         </ul>
       </div>
     )
