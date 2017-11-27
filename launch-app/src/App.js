@@ -110,15 +110,23 @@ class SearchResults extends Component {
   render(){
     return(
       <div className="box clearfix">
-        <ul>
-          <li><p className="name">Launch Name:</p> {this.props.name}</li>
+        <div className="media clearfix">
+          <div className="media-left">
+            <figure className="image is-64x64">
+              <img src={this.props.img} />
+            </figure>
+          </div>
+          <div className="media-content"> 
+            <h3 className="subtitle launchName">{this.props.name}</h3>
+          </div>
+        </div>
+        <ul className="content">
           <li><p className="name">Launch Window Start Time:</p> {this.props.windowstart}</li>
           <li><p className="name">Rocket Name:</p> {this.props.rocketName}</li>
           <li><p className="name">List of Space Agencies:</p> {this.props.spaceAgencies}</li>
           <li><p className="name">Launch Location Name/Country:</p> {this.props.locationName}</li>
-          <li><p className="name">A Thumbnail Image of the Rocket:</p> {this.props.img}</li>
-          <li className="button favs">Favorites Button</li>
         </ul>
+                  <div className="button favs"><i className="fa fa-star-o" aria-hidden="true"></i>  Add to Favorites</div>
       </div>
     )
   }
@@ -137,12 +145,14 @@ class App extends Component {
         <section className="hero">
           <div className="hero-body">
             <div className="container">
+
               <h1 className="title">
                 Launch App
               </h1>
               <h2 className="subtitle">
                 choose a date to search
               </h2>
+              <a href="" className="is-link favLink"><i className="fa fa-star-o" aria-hidden="true"></i>  Favorites</a>
             </div>
           </div>
         </section>

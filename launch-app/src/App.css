@@ -4,7 +4,15 @@
   background-color: #fbfbfb;
 }
 
+.hero-body{
+  padding-bottom: 10px;
+}
 
+.favLink{
+  padding-top: 20px;
+  padding-right: 5%;
+  float:right;
+}
 
 .clearfix:after { 
    content: "."; 
@@ -38,14 +46,25 @@
   float: none;
   margin: 0 auto;
 }
-
-li:last-child{
-  margin-top: 10px; 
+.favs{
+    color: #6F8099;
 }
+
 
 .name{
   float:left;
   color: #6F8099;
   font-size: 1rem;
   font-weight: bold;
+}
+.media{
+  display: inline-flex;
+}
+.launchName{
+  color: #6F8099;
+  font-weight: bold;
+}
+
+.image img{
+  display: inline-block;
 }
