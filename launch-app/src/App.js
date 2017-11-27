@@ -14,15 +14,11 @@ class Form extends Component {
         startDate:"YYYY-MM-DD",
         endDate:"YYYY-MM-DD"
       },
-      dates:[],
+      favArr:[],
       displayNewSearch: false,
       searchResults:''
     }
   }
-
-  componentDidMount() {
-    
-   }
 
   handleChange = (e) => {
     let form= this.state.form;
@@ -37,9 +33,8 @@ class Form extends Component {
       startDate: form.startDate,
       endDate: form.endDate
     }
-    // let resultsData = [];  
 
-    this.state.dates.push(newSearch);
+
     fetch(`https://launchlibrary.net/1.2/launch/${this.state.form.startDate}/${this.state.form.endDate}`)
       .then(res => res.json())
       .then(data => {
@@ -48,6 +43,19 @@ class Form extends Component {
         console.log(this.state.searchResults)
       })
     }
+
+  getFav = (id) => {
+    console.log(id)
+    const launchId = id;
+    function filterById(item){
+      if(item.id === launchId){
+        return true;
+      }
+    }
+    const fav = this.state.searchResults.filter(filterById);
+    console.log(fav);
+    this.props.handleFav(fav)
+  }
 
   displayNewSearch = () => {
     this.setState({displayNewSearch: !this.state.displayNewSearch})
@@ -78,8 +86,9 @@ class Form extends Component {
       </div>
       <div>
      {this.state.searchResults && this.state.searchResults.length && this.state.searchResults.map((launch)=>
-          <SearchResults
-            key={launch.id} 
+          <LaunchResults
+            key={launch.id}
+            id={launch.id}  
             name={launch.name}
             windowstart={launch.windowstart}
             rocketName={launch.rocket.name}
@@ -87,6 +96,7 @@ class Form extends Component {
             spaceAgencies= {launch.rocket.agencies[0].name}
             locationName= {launch.location.name}
             img={launch.rocket.imageURL}
+            getFav= {this.getFav}
           // )}
           />
         )}
@@ -99,7 +109,7 @@ class Form extends Component {
 }
 
 
-class SearchResults extends Component {
+class LaunchResults extends Component {
   constructor(props){
     super(props);
     this.state = {
@@ -126,7 +136,7 @@ class SearchResults extends Component {
           <li><p className="name">List of Space Agencies:</p> {this.props.spaceAgencies}</li>
           <li><p className="name">Launch Location Name/Country:</p> {this.props.locationName}</li>
         </ul>
-                  <div className="button favs"><i className="fa fa-star-o" aria-hidden="true"></i>  Add to Favorites</div>
+        <div className="button favs"  id={this.props.id} onClick={()=> {this.props.getFav(this.props.id)}}><i className="fa fa-star-o" aria-hidden="true"></i>  Add to Favorites</div>
       </div>
     )
   }
@@ -134,11 +144,76 @@ class SearchResults extends Component {
 }
 
 
+class Favorites extends Component{
+  constructor(props){
+    super(props);
+    this.state = {
+      favorites:[]
 
+    }
+  }
+  render(){
+    return(
+      <div>
+      {this.props.favArr && this.props.favArr.length && this.props.favArr.map((fav)=>
+      <LaunchResults 
+        key={fav.id} 
+        name={fav.name}
+        windowstart={fav.windowstart}
+        rocketName={fav.rocket.name}
+        spaceAgencies= {fav.rocket.agencies[0].name}
+        locationName= {fav.location.name}
+        img={fav.rocket.imageURL}
+      />
+    )}
+      </div>
+    )
+  }
+}
 
 
 
 class App extends Component {
+  constructor(props){
+    super(props);
+    this.state = {
+      formPage: true,
+      favArr: [] 
+    }
+  }
+
+  handlePage = () => {
+    console.log(this.state.formPage)
+    this.setState({formPage: !this.state.formPage})
+    console.log(this.state.formPage)
+  }
+
+  handleFav = (launch) => {
+    console.log(launch);
+    this.state.favArr.push(launch)
+    console.log(`favArr: ${this.state.favArr}`)
+  }
+
+  renderPage = () => {
+    if(!this.state.form){
+      return (
+        <Form 
+
+        handleFav = {this.handleFav}
+        />
+        )
+    }else{
+      return(
+        <Favorites 
+
+        favArr= {this.state.favArr}
+
+        />
+        )
+    }
+
+  }
+
   render() {
     return (
       <div className="App">
@@ -152,12 +227,12 @@ class App extends Component {
               <h2 className="subtitle">
                 choose a date to search
               </h2>
-              <a href="" className="is-link favLink"><i className="fa fa-star-o" aria-hidden="true"></i>  Favorites</a>
+              <div onClick={()=>{this.handlePage()}} className="button is-link favLink"><i className="fa fa-star-o" aria-hidden="true"></i>  Favorites</div>
             </div>
           </div>
         </section>
         <section className="clearfix formContainer">
-          <Form />
+          {this.renderPage()}
         </section>
 
       </div>
