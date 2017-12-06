@@ -8,12 +8,6 @@
   padding-bottom: 10px;
 }
 
-.favLink{
-  padding-top: 20px;
-  padding-right: 5%;
-  float:right;
-}
-
 .clearfix:after { 
    content: "."; 
    visibility: hidden; 
@@ -68,3 +62,6 @@
 .image img{
   display: inline-block;
 }
+
+
+
