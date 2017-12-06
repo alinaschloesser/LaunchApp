@@ -27,14 +27,7 @@ class Form extends Component {
   }
 
   search = (form) => { 
-    const newSearchId = Date.now();
-    const newSearch = {
-      id: newSearchId,
-      startDate: form.startDate,
-      endDate: form.endDate
-    }
-
-
+    
     fetch(`https://launchlibrary.net/1.2/launch/${this.state.form.startDate}/${this.state.form.endDate}`)
       .then(res => res.json())
       .then(data => {
@@ -172,7 +165,7 @@ class LaunchResults extends Component {
         <div className="media clearfix">
           <div className="media-left">
             <figure className="image is-64x64">
-              <img src={this.props.img} />
+              <img src={this.props.img} alt="rocket" />
             </figure>
           </div>
           <div className="media-content"> 

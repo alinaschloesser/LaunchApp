@@ -1,5 +1,5 @@
 .hero{
-  border-bottom: 1px #1975d2 solid;
+  border-bottom: 1px #3273dc solid;
   text-align: center;
   background-color: #fbfbfb;
 }
@@ -41,13 +41,13 @@
   margin: 0 auto;
 }
 .favs{
-    color: #6F8099;
+  color: #3B5C90;
 }
 
 
 .name{
   float:left;
-  color: #6F8099;
+  color: #424242;
   font-size: 1rem;
   font-weight: bold;
 }
@@ -55,7 +55,7 @@
   display: inline-flex;
 }
 .launchName{
-  color: #6F8099;
+  color: #3B5C90;
   font-weight: bold;
 }
 
