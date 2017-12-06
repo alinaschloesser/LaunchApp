@@ -2,7 +2,7 @@
   "name": "launch-app",
   "version": "0.1.0",
   "private": true,
-  "homepage": "https://alinaschloesser.github.io/LaunchApp",
+  "homepage": "https://alinaschloesser.github.io/LaunchApp/",
   "dependencies": {
     "gh-pages": "^1.1.0",
     "react": "^16.1.1",
